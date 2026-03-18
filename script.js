@@ -5,7 +5,7 @@ const COLORS = [
 ];
 
 // Durasi popup dalam detik — ubah angka ini untuk ganti durasi
-const POPUP_DURASI = 30;
+const POPUP_DURASI = 30;  // test push
 
 let items    = [];
 let segments = [];
