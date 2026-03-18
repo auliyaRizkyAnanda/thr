@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wheel Undian Lebaran</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- Confirm Reset -->
+  <div id="confirm-overlay" class="confirm-overlay" style="display:none">
+    <div class="confirm-box">
+      <p>Reset semua data hadiah dan mulai dari awal?</p>
+      <div class="confirm-btns">
+        <button class="btn-no" onclick="hideConfirm()">Batal</button>
+        <button class="btn-yes" onclick="doReset()">Ya, Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confetti -->
+  <div class="confetti" id="confetti"></div>
+
+  <!-- Popup Selamat -->
+  <div id="popup-overlay" class="popup-overlay" style="display:none">
+    <div class="popup-box">
+      <div class="popup-emoji">🎉</div>
+      <div class="popup-title">Selamat!</div>
+      <div class="popup-nominal" id="popup-nominal">Rp 50.000</div>
+      <div class="popup-sub">Hadiah kamu sudah keluar!</div>
+      <div class="popup-progress">
+        <div class="popup-progress-bar" id="popup-bar" style="width:100%"></div>
+      </div>
+      <div class="popup-timer" id="popup-timer">Menutup dalam 30 detik...</div>
+      <button class="btn-popup-close" onclick="closePopup()">Tutup</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>🎡 Wheel Undian Lebaran</h2>
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('setup')">⚙️ Atur Hadiah</div>
+      <div class="tab" onclick="switchTab('spin')">🎯 Putar Roda</div>
+    </div>
+
+    <!-- Tab Atur Hadiah -->
+    <div id="tab-setup" class="section active">
+      <div class="setup-panel">
+        <h3>Tambah nominal hadiah</h3>
+        <div class="row">
+          <span class="label">Nominal</span>
+          <div class="inp-wrap">
+            <span class="inp-prefix">Rp</span>
+            <input type="text" id="inp-label" placeholder="50.000" inputmode="numeric"
+              onkeydown="if(event.key==='Enter')addItem()" oninput="formatRupiah(this)"/>
+          </div>
+        </div>
+        <div class="row">
+          <span class="label">Jumlah</span>
+          <input type="number" id="inp-count" placeholder="Berapa banyak?" min="1" value="1"
+            style="max-width:150px" onkeydown="if(event.key==='Enter')addItem()"/>
+          <button class="btn-add" onclick="addItem()">+ Tambah</button>
+        </div>
+      </div>
+      <div class="items-list" id="items-list"></div>
+      <div id="empty-msg">Belum ada hadiah ditambahkan.</div>
+      <div class="btn-row">
+        <button class="btn-build" onclick="buildWheel()">Buat Roda ▶</button>
+        <button class="btn-reset" onclick="showConfirm()">↺ Reset</button>
+      </div>
+    </div>
+
+    <!-- Tab Putar Roda -->
+    <div id="tab-spin" class="section">
+      <div class="wheel-area">
+        <div class="wheel-wrapper">
+          <div class="pointer"></div>
+          <canvas id="wheel" width="340" height="340"></canvas>
+        </div>
+        <div class="sisa" id="sisa"></div>
+        <button class="btn-spin" id="btn-spin" onclick="spin()">SPIN</button>
+        <div class="result-box" id="result-box">
+          <div class="sub">Klik SPIN untuk memutar roda!</div>
+        </div>
+        <div class="history" id="history-wrap" style="display:none">
+          <h4>Sudah keluar:</h4>
+          <div class="hist-list" id="hist-list"></div>
+        </div>
+        <button class="btn-reset" style="margin-top:4px" onclick="showConfirm()">↺ Reset & Mulai Ulang</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
