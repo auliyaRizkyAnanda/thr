@@ -4,8 +4,7 @@ const COLORS = [
   '#A29BFE', '#00B894', '#6C5CE7', '#FD79A8', '#55EFC4'
 ];
 
-// Durasi popup dalam detik — ubah angka ini untuk ganti durasi
-const POPUP_DURASI = 30;  // test push
+const POPUP_DURASI = 30;  
 
 let items    = [];
 let segments = [];
@@ -15,7 +14,7 @@ let rotation = 0;
 let popupTimeout  = null;
 let popupInterval = null;
 
-// ── Confirm Reset ──────────────────────────────────────────
+
 function showConfirm() {
   document.getElementById('confirm-overlay').style.display = 'flex';
 }
@@ -41,7 +40,6 @@ function doReset() {
   switchTab('setup');
 }
 
-// ── Popup Selamat ──────────────────────────────────────────
 function showPopup(label) {
   const durasi = POPUP_DURASI;
   document.getElementById('popup-nominal').textContent = label;
@@ -95,7 +93,6 @@ function spawnConfetti() {
   }
 }
 
-// ── Format Rupiah ──────────────────────────────────────────
 function formatRupiah(el) {
   const raw = el.value.replace(/\D/g, '');
   if (!raw) { el.value = ''; return; }
@@ -113,7 +110,6 @@ function getDisplayLabel(raw) {
   return 'Rp ' + num.toLocaleString('id-ID');
 }
 
-// ── Shuffle ────────────────────────────────────────────────
 function shuffle(arr) {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
@@ -123,7 +119,6 @@ function shuffle(arr) {
   return a;
 }
 
-// ── Manajemen Item ─────────────────────────────────────────
 function addItem() {
   const raw   = getRawValue();
   const count = parseInt(document.getElementById('inp-count').value) || 1;
@@ -184,7 +179,6 @@ function renderItems(highlightIdx = -1) {
   }
 }
 
-// ── Build Wheel ────────────────────────────────────────────
 function buildWheel() {
   if (!items.length) return alert('Tambahkan minimal 1 hadiah dulu!');
 
@@ -203,7 +197,6 @@ function buildWheel() {
   switchTab('spin');
 }
 
-// ── Tab ────────────────────────────────────────────────────
 function switchTab(t) {
   document.querySelectorAll('.tab').forEach((el, i) =>
     el.classList.toggle('active', ['setup', 'spin'][i] === t)
@@ -213,7 +206,6 @@ function switchTab(t) {
   if (t === 'spin' && segments.length) drawWheel();
 }
 
-// ── Draw Wheel ─────────────────────────────────────────────
 function drawWheel(winIdx = -1) {
   const canvas = document.getElementById('wheel');
   const ctx    = canvas.getContext('2d');
@@ -282,7 +274,6 @@ function lighten(hex) {
   return `rgb(${Math.min(255, rv + 60)}, ${Math.min(255, gv + 60)}, ${Math.min(255, bv + 60)})`;
 }
 
-// ── Winner Detection ───────────────────────────────────────
 function getWinnerIndex() {
   const n = segments.length;
   if (!n) return -1;
@@ -292,7 +283,6 @@ function getWinnerIndex() {
   return Math.floor(rel / arc) % n;
 }
 
-// ── History ────────────────────────────────────────────────
 function renderHistory() {
   if (!history.length) {
     document.getElementById('history-wrap').style.display = 'none';
@@ -303,7 +293,6 @@ function renderHistory() {
     history.map(h => `<span class="hist-chip">${h}</span>`).join('');
 }
 
-// ── Spin ───────────────────────────────────────────────────
 function spin() {
   if (spinning || !segments.length) return;
   spinning = true;
@@ -356,5 +345,4 @@ function spin() {
   requestAnimationFrame(frame);
 }
 
-// ── Init ───────────────────────────────────────────────────
 renderItems();

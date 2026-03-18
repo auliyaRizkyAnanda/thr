@@ -38,10 +38,10 @@
   </div>
 
   <div class="container">
-    <h2>🎡 Wheel Undian Lebaran</h2>
+    <h2>🎡 Wheel Undian Lebaran 🎡</h2>
     <div class="tabs">
-      <div class="tab active" onclick="switchTab('setup')">⚙️ Atur Hadiah</div>
-      <div class="tab" onclick="switchTab('spin')">🎯 Putar Roda</div>
+      <div class="tab active" onclick="switchTab('setup')"> Atur Hadiah </div>
+      <div class="tab" onclick="switchTab('spin')"> Putar Roda </div>
     </div>
 
     <!-- Tab Atur Hadiah -->
@@ -60,13 +60,13 @@
           <span class="label">Jumlah</span>
           <input type="number" id="inp-count" placeholder="Berapa banyak?" min="1" value="1"
             style="max-width:150px" onkeydown="if(event.key==='Enter')addItem()"/>
-          <button class="btn-add" onclick="addItem()">+ Tambah</button>
+          <button class="btn-add" onclick="addItem()">Tambah</button>
         </div>
       </div>
       <div class="items-list" id="items-list"></div>
       <div id="empty-msg">Belum ada hadiah ditambahkan.</div>
       <div class="btn-row">
-        <button class="btn-build" onclick="buildWheel()">Buat Roda ▶</button>
+        <button class="btn-build" onclick="buildWheel()">Buat Roda</button>
         <button class="btn-reset" onclick="showConfirm()">↺ Reset</button>
       </div>
     </div>
